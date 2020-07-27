@@ -2,12 +2,16 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
+	
+	//променливи
 	int[] gridXandY;
 	int x,y,x1,y1,n;
 	int[][] generationZero;
 	int[] gameArgs;
 	
 	public void Game() {
+		
+		//конструктор
 		gridXandY = gridXY();
 		while (gridXandY[0] > gridXandY[1] || gridXandY[1] >= 1000 )
 			gridXandY = gridXY();
@@ -25,6 +29,7 @@ public class Game {
 	}
 
 	public int[] gridXY() {
+		//метод, който приема размерите на матрицата 
 		Scanner input = new Scanner(System.in);
 		int[] grid = new int[2];
 		System.out.println("Въведете X и Y със разделител space: ");
@@ -36,6 +41,7 @@ public class Game {
 	}
 
 	public int[][] generationZero(int cols, int rows) {
+		//метод, който приема размерите на матрицата и връща попълнена с елементи матрица
 		 Scanner input = new Scanner(System.in);
 		 System.out.printf("Въведете по %d елемента на ред %d реда. С разделител space.\n",cols,rows);
 		 int[][] array = new int[rows][cols];
@@ -57,6 +63,8 @@ public class Game {
 	}
 
 	public int[] inputArguments() {
+		
+		//метод, който приема x1,y1 и n
 		Scanner input = new Scanner(System.in);
 		int[] gameArguments = new int[3];
 		System.out.println("Въведете X1, Y1 и N със разделител space: ");

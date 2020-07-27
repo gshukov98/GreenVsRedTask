@@ -12,10 +12,10 @@ public class Main {
 
 		int[][] array = game.generationZero;
 
-		for (int i = 1; i <= game.getN(); i++) {
-			loopOverArray(array, game.getX1(), game.getY1());
-		}
-		;
+		
+		loopOverArray(array, game.getX1(), game.getY1(),game.getN());
+		
+		
 
 		// System.out.println("x1 " + game.getX1() + " y1 " + game.getY1());
 		// System.out.println("N " + game.getN());
@@ -24,9 +24,9 @@ public class Main {
 	}
 
 	public static ArrayList<Integer> getSurroundings(int[][] array, int x, int y) {
-
+		//метод, който извежда всички съседни елементи 
 		ArrayList<Integer> al = new ArrayList<Integer>();
-		int width = 1; // change the value of width, according to the requirement
+		int width = 1;
 		for (int i = 0; i < array.length; i++) {
 			for (int j = 0; j < array.length; j++) {
 				if ((i == (x - width) && ((y + width) >= j && j >= (y - width)))
@@ -44,8 +44,8 @@ public class Main {
 		return al;
 	}
 
-	public static int[][] loopOverArray(int[][] array, int x, int y) {
-
+	public static int[][] loopOverArray(int[][] array, int x, int y,int p) {
+		//метод, който обхожда всички елементи в матрицата и извършва манипулации със съседните на всеки елемент
 		int green = 0;
 		int red = 0;
 
@@ -58,6 +58,8 @@ public class Main {
 			for (int row = 0; row < array.length; row++) {
 
 				// System.out.println(array[col][row]);
+				
+				//тук се броят колко съседни червени и зелени има даден елемент
 				ArrayList<Integer> arrayList = getSurroundings(array, col, row);
 				for (Integer integer : arrayList) {
 					if (integer == 0)
@@ -67,7 +69,8 @@ public class Main {
 				}
 				// System.out.println("green: " + green);
 				// System.out.println("red: " + red);
-
+				
+				//тук са правилата на играта
 				if (array[col][row] == 0) {
 					if (green == 3 || green == 6)
 						copyArray[col][row] = 1;
@@ -86,6 +89,12 @@ public class Main {
 				red = 0;
 
 			}
+			
+		}
+		
+		while(p>=0) {
+			p--;
+			loopOverArray(copyArray, x, y, p);
 		}
 		return copyArray;
 	}
